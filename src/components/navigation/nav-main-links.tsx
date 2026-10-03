@@ -1,11 +1,11 @@
 "use client";
 
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { useActiveNavContext } from "@/components/navigation/active-nav-provider";
 import { SheetClose } from "@/components/ui/sheet";
 import { navigationConfig, siteConfig } from "@/config";
-import { documentationPagePath } from "@/lib/documentation";
 import { isHomeSectionKey, navItemKey } from "@/lib/nav-item-key";
 import { cn } from "@/lib/utils";
 import type { LinkConfig } from "@/types/config";
@@ -27,7 +27,11 @@ type NavMainLinksProps = {
   onNavigate?: () => void;
 };
 
-const quickstartDocPath = documentationPagePath("quickstart");
+const documentationNavPath = siteConfig.documentationPath;
+
+function isPrefetchableRoute(href: string): boolean {
+  return href.startsWith("/") && !href.includes("#");
+}
 
 function isNavItemActive(activeKey: string | null, href: string): boolean {
   const key = navItemKey(href);
@@ -35,7 +39,7 @@ function isNavItemActive(activeKey: string | null, href: string): boolean {
     return true;
   }
   if (
-    href === quickstartDocPath &&
+    href === documentationNavPath &&
     activeKey !== null &&
     (activeKey === siteConfig.documentationPath ||
       activeKey.startsWith(`${siteConfig.documentationPath}/`))
@@ -102,7 +106,17 @@ function NavLinkItem({
     !engage && variant === "desktop" && isActive && "nav-main-link-active",
   );
 
-  const link = (
+  const link = isPrefetchableRoute(item.href) ? (
+    <Link
+      href={item.href}
+      prefetch
+      className={className}
+      aria-current={isActive ? "location" : undefined}
+      onClick={onClick}
+    >
+      {item.label}
+    </Link>
+  ) : (
     <a
       href={item.href}
       className={className}

@@ -1,6 +1,5 @@
 import type { NavigationConfig } from "@/types/config";
 
-import { documentationPagePath } from "@/lib/documentation";
 import { sectionHref } from "@/lib/section-href";
 import { siteConfig } from "@/config/site";
 
@@ -16,8 +15,8 @@ export const navigationConfig = {
       href: siteConfig.pricingPath,
     },
     {
-      label: "Quickstart",
-      href: documentationPagePath("quickstart"),
+      label: "Documentation",
+      href: siteConfig.documentationPath,
     },
   ],
   engageMenuLabel: "Get started",

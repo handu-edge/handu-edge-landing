@@ -19,6 +19,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
+      data-scroll-behavior="smooth"
       data-accent={themeConfig.defaultAccent}
       data-font={typographyConfig.defaultFont}
       data-radius={themeConfig.radius}

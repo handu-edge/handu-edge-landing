@@ -37,6 +37,9 @@
 
 html {
   color-scheme: light;
+}
+
+html[data-scroll-behavior="smooth"] {
   scroll-behavior: smooth;
 }
 

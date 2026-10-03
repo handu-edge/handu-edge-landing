@@ -1,8 +1,21 @@
-import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 
-import { documentationConfig } from "@/config";
-import { documentationPagePath } from "@/lib/documentation";
+import {
+  DocumentationPageView,
+  documentationPageMetadata,
+} from "@/lib/documentation-page";
+import { getDefaultDocumentationSlug } from "@/lib/documentation";
+import { createDocumentationMetadata } from "@/lib/seo";
 
-export default function DocumentationIndexPage() {
-  redirect(documentationPagePath(documentationConfig.defaultSlug));
+export const dynamic = "force-static";
+
+const defaultSlug = getDefaultDocumentationSlug();
+
+export const metadata: Metadata = {
+  ...createDocumentationMetadata(),
+  ...documentationPageMetadata(defaultSlug),
+};
+
+export default async function DocumentationIndexPage() {
+  return <DocumentationPageView slug={defaultSlug} />;
 }

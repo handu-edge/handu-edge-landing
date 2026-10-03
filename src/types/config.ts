@@ -122,19 +122,6 @@ export type PricingTierConfig = {
   highlighted?: boolean;
 };
 
-export type DocContentBlock =
-  | { type: "paragraph"; text: string }
-  | { type: "heading"; level: 2 | 3; text: string }
-  | { type: "list"; items: readonly string[] }
-  | { type: "code"; language: string; text: string };
-
-export type DocPageConfig = {
-  slug: string;
-  title: string;
-  description: string;
-  blocks: readonly DocContentBlock[];
-};
-
 export type DocSidebarGroupConfig = {
   title: string;
   items: readonly {
@@ -143,9 +130,27 @@ export type DocSidebarGroupConfig = {
   }[];
 };
 
+export type DocumentationGitHubSource = {
+  owner: string;
+  repo: string;
+  branch: string;
+};
+
+export type DocumentationRemotePage = {
+  slug: string;
+  label: string;
+  title: string;
+  description: string;
+  /** Path to the `.md` file in the configured GitHub repo. */
+  path: string;
+};
+
+export type DocPageConfig = DocumentationRemotePage;
+
 export type DocumentationConfig = {
   path: string;
   defaultSlug: string;
+  github: DocumentationGitHubSource;
   seo: {
     title: string;
     description: string;
@@ -153,7 +158,7 @@ export type DocumentationConfig = {
   sidebarLabel: string;
   mobileMenuLabel: string;
   sidebar: readonly DocSidebarGroupConfig[];
-  pages: readonly DocPageConfig[];
+  remotePages: readonly DocumentationRemotePage[];
 };
 
 export type PricingConfig = {

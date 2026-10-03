@@ -1,39 +1,37 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
 
-import { DocsArticle } from "@/components/documentation/docs-article";
 import {
-  getDocumentationPage,
+  DocumentationPageView,
+  documentationPageMetadata,
+} from "@/lib/documentation-page";
+import {
+  getDefaultDocumentationSlug,
   getDocumentationSlugs,
 } from "@/lib/documentation";
-import { createDocumentationPageMetadata } from "@/lib/seo";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  return getDocumentationSlugs().map((slug) => ({ slug }));
+const defaultSlug = getDefaultDocumentationSlug();
+
+/** Static routes under `app/documentation/<slug>/page.tsx` take precedence. */
+const STATIC_DOC_SLUGS = new Set(["global-gitignore"]);
+
+export function generateStaticParams() {
+  return getDocumentationSlugs()
+    .filter((slug) => slug !== defaultSlug && !STATIC_DOC_SLUGS.has(slug))
+    .map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const page = getDocumentationPage(slug);
-  if (!page) {
-    return {};
-  }
-  return createDocumentationPageMetadata(page);
+  return documentationPageMetadata(slug);
 }
 
 export default async function DocumentationSlugPage({ params }: PageProps) {
   const { slug } = await params;
-  const page = getDocumentationPage(slug);
-
-  if (!page) {
-    notFound();
-  }
-
-  return <DocsArticle page={page} />;
+  return <DocumentationPageView slug={slug} />;
 }
