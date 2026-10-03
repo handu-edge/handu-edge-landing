@@ -1,0 +1,69 @@
+.type-eyebrow {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
+  text-transform: none;
+  font-weight: 400;
+}
+
+.apple-surface-muted {
+  background: color-mix(in oklch, var(--muted) 55%, var(--background));
+}
+
+.apple-card {
+  border-radius: 0;
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: none;
+}
+
+.apple-nav-link {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: color-mix(in oklch, var(--foreground) 72%, transparent);
+}
+
+.apple-nav-link:hover {
+  color: var(--foreground);
+}
+
+.nav-main-link-active {
+  color: var(--foreground);
+  font-weight: 500;
+  box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+.nav-engage-link {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: color-mix(in oklch, var(--primary) 72%, var(--foreground));
+}
+
+.nav-engage-link:hover {
+  color: var(--foreground);
+}
+
+.nav-engage-link-active {
+  color: var(--foreground);
+  font-weight: 600;
+  box-shadow: inset 0 -2px 0 var(--primary);
+}
+
+.apple-cta {
+  height: 2.75rem;
+  border-radius: 0;
+  padding-inline: 1.375rem;
+  font-size: 1.0625rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.apple-section-copy {
+  max-width: 42rem;
+}
+
+.apple-section-copy-wide {
+  max-width: 52rem;
+}

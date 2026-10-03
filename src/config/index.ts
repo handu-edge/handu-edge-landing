@@ -1,0 +1,14 @@
+export { aboutConfig } from "@/config/about";
+export { pricingConfig } from "@/config/pricing";
+export { documentationConfig } from "@/config/documentation";
+export { platformConfig } from "@/config/platform";
+export { brandConfig } from "@/config/brand";
+export { footerConfig } from "@/config/footer";
+export { landingConfig } from "@/config/landing";
+export { navigationConfig } from "@/config/navigation";
+export { seoConfig } from "@/config/seo";
+export { siteConfig } from "@/config/site";
+export { themeConfig } from "@/config/theme";
+export type { AccentId, RadiusId, ThemeModeId } from "@/config/theme";
+export { typographyConfig } from "@/config/typography";
+export type { FontId } from "@/config/typography";

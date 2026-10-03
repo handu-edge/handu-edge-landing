@@ -1,0 +1,197 @@
+.type-display {
+  font-size: var(--type-display-size);
+  line-height: var(--type-display-leading);
+  letter-spacing: var(--type-display-tracking);
+  text-wrap: balance;
+}
+
+.type-headline {
+  font-size: var(--type-headline-size);
+  line-height: var(--type-headline-leading);
+  letter-spacing: var(--type-headline-tracking);
+  text-wrap: balance;
+}
+
+.type-body {
+  font-size: var(--type-body-size);
+  line-height: var(--type-body-leading);
+  letter-spacing: var(--type-body-tracking);
+}
+
+.type-label {
+  font-size: var(--type-label-size);
+  line-height: var(--type-label-leading);
+  letter-spacing: var(--type-label-tracking);
+  text-transform: uppercase;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+.platform-flow {
+  stroke-dasharray: 6 10;
+  animation: platform-flow 20s linear infinite;
+}
+
+@keyframes platform-flow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+.edge-stage-label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.edge-stage-label-brand {
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+
+.edge-stream {
+  stroke-dasharray: 5 9;
+  animation: edge-stream 5s linear infinite;
+}
+
+.edge-hub {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edge-hub-pulse 2.8s ease-in-out infinite;
+}
+
+.edge-source-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edge-node-appear 1s ease both;
+}
+
+.edge-source-ambient {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.edge-pipeline-step {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edge-pipeline-step 2.6s ease-in-out infinite;
+}
+
+.edge-pipeline-label {
+  font-size: 9.25px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.edge-user-node {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edge-user-pulse 3s ease-in-out infinite;
+}
+
+.edge-gateway-core {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: edge-hub-pulse 2.8s ease-in-out infinite;
+}
+
+.edge-consumer-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+}
+
+@keyframes edge-stream {
+  to {
+    stroke-dashoffset: -280;
+  }
+}
+
+@keyframes edge-hub-pulse {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes edge-node-appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes edge-pipeline-step {
+  0%,
+  100% {
+    opacity: 0.72;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes edge-user-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .platform-flow {
+    animation: none;
+  }
+
+  .edge-stream,
+  .edge-gateway-core,
+  .edge-source-node,
+  .edge-pipeline-step,
+  .edge-user-node {
+    animation: none;
+  }
+
+  .edge-packet {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
